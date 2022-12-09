@@ -5,6 +5,7 @@ module Main (main) where
 import Data.List
 import System.Environment
 import System.IO
+import qualified System.IO.Strict as S
 
 -- Define the main function
 main = do
@@ -46,7 +47,7 @@ removeTask task = do
   readHandle <- openFile "todo.txt" ReadMode
 
   -- Read the contents of the file
-  contents <- hGetContents readHandle
+  contents <- S.hGetContents readHandle
 
   -- Remove the task from the list of tasks
   let tasks = delete task $ lines contents
